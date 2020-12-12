@@ -63,12 +63,12 @@ core::mutable_frame make_frame(void*                    tag,
 
     if (audio) {
         // TODO This is a bit of a hack
-        frame.audio_data() = std::vector<int32_t>(audio->nb_samples * 8, 0);
+        frame.audio_data() = std::vector<int32_t>(audio->nb_samples * 16, 0);
         auto dst           = frame.audio_data().data();
         auto src           = reinterpret_cast<int32_t*>(audio->data[0]);
         tbb::parallel_for(0, audio->nb_samples, [&](int i) {
-            for (auto j = 0; j < std::min(8, audio->channels); ++j) {
-                dst[i * 8 + j] = src[i * audio->channels + j];
+            for (auto j = 0; j < std::min(16, audio->channels); ++j) {
+                dst[i * 16 + j] = src[i * audio->channels + j];
             }
         });
     }
