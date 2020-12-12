@@ -6,10 +6,12 @@
 .settings
 .vscode
 .vs
-build
 dist
 CMakeFiles
-casparcg_server
+
 
 src/cmake-build-*
 src/.idea
+support/
+build/
+casparcg.tar.gz
